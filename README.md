@@ -1,101 +1,101 @@
 # QtTrafficSim
 
-**QtTrafficSim** (wewnętrznie znany jako *EasyRider*) to interaktywny symulator ruchu ulicznego napisany w języku C++ z wykorzystaniem frameworka Qt. Aplikacja pozwala na wizualizację i sterowanie parametrami ruchu drogowego w czasie rzeczywistym, symulując zachowania pojazdów, sygnalizację świetlną oraz interakcje między uczestnikami ruchu.
+**QtTrafficSim** (*EasyRider*) is an interactive traffic simulator written in C++ using the Qt framework. The application allows for real-time visualization and control of traffic parameters, simulating vehicle behavior, traffic lights, and interactions between road users.
 
-## Spis treści
-1. [Opis projektu](#opis-projektu)
-2. [Funkcjonalności](#funkcjonalności)
-3. [Technologie](#technologie)
-4. [Zrzuty ekranu](#zrzuty-ekranu)
-5. [Instalacja i kompilacja](#instalacja-i-kompilacja)
-6. [Struktura projektu](#struktura-projektu)
+## Table of Contents
+1. [Project Description](#project-description)
+2. [Features](#features)
+3. [Technologies](#technologies)
+4. [Screenshots](#screenshots)
+5. [Installation and Compilation](#installation-and-compilation)
+6. [Project Structure](#project-structure)
 
-## Opis projektu
+## Project Description
 
-Celem projektu jest symulacja prostego systemu drogowego. Aplikacja zarządza cyklem życia pojazdów, ich poruszaniem się po wyznaczonej mapie drogowej (grafie ulic i skrzyżowań) oraz reakcją na otoczenie, takie jak inne pojazdy czy światła drogowe. Użytkownik ma możliwość wpływania na przebieg symulacji za pomocą panelu sterowania.
+The goal of the project is to simulate a simple road system. The application manages the lifecycle of vehicles, their movement on a designated road map (a graph of streets and intersections), and their reaction to the environment, such as other vehicles or traffic lights. The user can influence the simulation via a control panel.
 
-## Funkcjonalności
+## Features
 
-*   **Symulacja w czasie rzeczywistym:** Płynne odwzorowanie ruchu pojazdów.
-*   **System sterowania ruchem:** Obsługa skrzyżowań oraz sygnalizacji świetlnej (klasa `TrafficLight`).
-*   **Inteligentne zachowanie pojazdów:**
-    *   Wykrywanie kolizji i zachowanie bezpiecznego odstępu.
-    *   Stany pojazdów: Jazda (`DrivingState`), Zatrzymanie (`StoppedState`), Podążanie za innym pojazdem (`FollowingState`).
-*   **Panel kontrolny GUI:**
-    *   Start/Pauza symulacji.
-    *   Suwak limitu pojazdów na mapie.
-    *   Suwak częstotliwości pojawiania się nowych aut (Spawn Rate).
-    *   Suwak prędkości symulacji.
-*   **Zarządzanie mapą:** System oparty na węzłach (`StreetMapNode`) i ulicach (`StraightStreet`), tworzący spójną sieć drogową.
+*   **Real-time simulation:** Smooth rendering of vehicle movement.
+*   **Traffic control system:** Support for intersections and traffic lights (`TrafficLight` class).
+*   **Intelligent vehicle behavior:**
+    *   Collision detection and maintaining safe distance.
+    *   Vehicles implemented as state machines: Driving (`DrivingState`), Stopped (`StoppedState`), Following another vehicle (`FollowingState`).
+*   **GUI Control Panel:**
+    *   Start/Pause simulation.
+    *   Slider for vehicle limit on the map.
+    *   Slider for vehicle spawn frequency (Spawn Rate).
+    *   Slider for simulation speed.
+*   **Map management:** A system based on nodes (`StreetMapNode`) and streets (`StraightStreet`), creating a coherent road network.
 
-## Technologie
+## Technologies
 
-Projekt został zrealizowany przy użyciu następujących technologii:
+The project was implemented using the following technologies:
 
-*   **Język:** C++17
-*   **Framework GUI:** Qt (Qt5 / Qt6 - Widgets)
-*   **System budowania:** CMake (minimalna wersja 3.5)
+*   **Language:** C++17
+*   **GUI Framework:** Qt (Qt5 / Qt6 - Widgets)
+*   **Build System:** CMake (minimum version 3.5)
 
-## Zrzuty ekranu
+## Screenshots
 
 <img width="1002" height="739" alt="image" src="https://github.com/user-attachments/assets/0b085884-f77d-458b-8b0c-498ab0f33a03" />
-*Widok główny symulacji*
+*Main simulation view*
 
-## Instalacja i kompilacja
+## Installation and Compilation
 
-Aby skompilować i uruchomić projekt, potrzebujesz kompilatora C++, CMake oraz bibliotek Qt.
+To compile and run the project, you need a C++ compiler, CMake, and Qt libraries.
 
-### Wymagania wstępne
-*   C++ Compiler (GCC, Clang, MSVC) wspierający C++17
+### Prerequisites
+*   C++ Compiler (GCC, Clang, MSVC) supporting C++17
 *   CMake
-*   Qt 5 lub Qt 6 (moduł `Widgets`)
+*   Qt 5 or Qt 6 (`Widgets` module)
 
-### Kroki instalacji
+### Installation Steps
 
-1.  **Sklonuj repozytorium:**
+1.  **Clone the repository:**
     ```bash
     git clone https://github.com/jakub-cz01/QtTrafficSim.git
     cd QtTrafficSim
     ```
 
-2.  **Utwórz katalog budowania:**
+2.  **Create a build directory:**
     ```bash
     mkdir build
     cd build
     ```
 
-3.  **Skonfiguruj projekt za pomocą CMake:**
+3.  **Configure the project using CMake:**
     ```bash
     cmake ..
     ```
 
-4.  **Skompiluj projekt:**
+4.  **Compile the project:**
     ```bash
     cmake --build .
     ```
 
-5.  **Uruchom aplikację:**
-    Na systemie Linux/macOS:
+5.  **Run the application:**
+    On Linux/macOS:
     ```bash
     ./EasyRider
     ```
-    Na systemie Windows:
+    On Windows:
     ```bash
     Debug\EasyRider.exe
     ```
 
-## Struktura projektu
+## Project Structure
 
-Główne pliki i klasy w projekcie:
+Main files and classes in the project:
 
-*   **`main.cpp`**: Punkt wejścia aplikacji.
-*   **`mainwindow.cpp/h`**: Obsługa głównego okna i interfejsu użytkownika.
-*   **`simulationloop.cpp/h`**: Główna pętla sterująca logiką symulacji (wzorzec Singleton).
-*   **`vehicle.cpp/h`**: Klasa reprezentująca pojazd.
-*   **`vehiclemanager.cpp/h`**: Zarządzanie tworzeniem i usuwaniem pojazdów.
-*   **`trafficlight.cpp/h`**: Logika sygnalizacji świetlnej.
-*   **`streetmap.cpp/h`**: Reprezentacja mapy drogowej.
-*   **`*.ui`**: Pliki interfejsu użytkownika Qt Designer.
+*   **`main.cpp`**: Application entry point.
+*   **`mainwindow.cpp/h`**: Main window and user interface handling.
+*   **`simulationloop.cpp/h`**: Main loop controlling simulation logic (Singleton pattern).
+*   **`vehicle.cpp/h`**: Class representing a vehicle.
+*   **`vehiclemanager.cpp/h`**: Managing vehicle creation and deletion.
+*   **`trafficlight.cpp/h`**: Traffic light logic.
+*   **`streetmap.cpp/h`**: Road map representation.
+*   **`*.ui`**: Qt Designer user interface files.
 
 ---
-Autor: [jakub-cz01](https://github.com/jakub-cz01)
+Author: [jakub-cz01](https://github.com/jakub-cz01)
